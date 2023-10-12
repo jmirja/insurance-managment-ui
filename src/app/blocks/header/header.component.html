@@ -1,0 +1,61 @@
+<div class="menu-container" [class.menu-is-mobile]="mobileQuery.matches">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <a class="logo" [routerLink]="['/']"></a>
+      <span class="app-title">Insurance Managment</span>
+      <span class="header-spacer"></span>
+      <a
+        *ngIf="!user"
+        mat-button
+        routerLink="/auth"
+        routerLinkActive="active-link"
+      >
+        <mat-icon> person_outliner </mat-icon>
+        Login
+      </a>
+      <div>
+        <a mat-button *ngIf="user" [matMenuTriggerFor]="menu">
+          <mat-icon>account_box</mat-icon>
+          <span fxShow="true" fxHide.lt-md="true"> {{ user.name }}</span>
+        </a>
+        <mat-menu #menu="matMenu">
+          <button (click)="logout()" mat-menu-item>logout</button>
+        </mat-menu>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+
+  <mat-sidenav-container
+    class="menu-sidenav-container"
+    [style.marginTop.px]="mobileQuery.matches ? 56 : 0"
+  >
+    <mat-sidenav
+      #sidenav
+      [mode]="mobileQuery.matches ? 'over' : 'side'"
+      [fixedInViewport]="mobileQuery.matches"
+      fixedTopGap="56"
+    >
+      <mat-nav-list>
+        <mat-list-item
+          routerLink="{{ routers.DASHBOARD }}"
+          routerLinkActive="active"
+        >
+          <mat-icon routerLinkActive="active-icon">home</mat-icon> Dashboard
+        </mat-list-item>
+        <mat-list-item
+          routerLink="{{ routers.BANKS }}"
+          routerLinkActive="active"
+        >
+          <mat-icon routerLinkActive="active-icon">account_balance</mat-icon>
+          Banks
+        </mat-list-item>
+      </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+
+@use '@angular/material' as mat;
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+
+body {
+  background-color: #f4f3f3;
+  margin: 0;
+  pm-root * {
+    font-family: "Exo", sans-serif;
+  }
+}
+
+.left-spacer {
+  margin-left: 2%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
