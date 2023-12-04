@@ -9,7 +9,6 @@ import {
 import { MediaMatcher } from '@angular/cdk/layout';
 
 import { routes } from 'src/app/core/consts';
-import { User } from 'src/app/core/models';
 
 @Component({
   selector: 'app-header',
@@ -21,7 +20,7 @@ export class HeaderComponent implements OnDestroy {
   private _mobileQueryListener: () => void;
 
   @Input()
-  user!: User;
+  user: string = '';
 
   @Output()
   logoutEvent = new EventEmitter<any>();

@@ -22,3 +22,13 @@
     color: blue;
   }
 }
+
+#login-logo-container {
+  text-align: center;
+  margin: 1.5em;
+
+  #login-logo {
+      width: 200px;
+      height: auto;
+  }
+}

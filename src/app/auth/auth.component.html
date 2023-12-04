@@ -4,44 +4,14 @@
       <mat-tab-group class="auth__group">
         <mat-tab label="Login">
           <h4 class="auth__group-title">Welcome!</h4>
-          <div class="auth__google-button-wrapper">
-            <button mat-raised-button class="auth__google-button">
-              <img
-                class="auth__google-button-icon"
-                src="./assets/auth/google.svg"
-                alt="google"
-              />
-              Sign in with Google
-            </button>
-          </div>
-
-          <div class="auth__border-wrapper">
-            <div class="auth__border-line"></div>
-            <p class="auth__border-title">or</p>
-            <div class="auth__border-line"></div>
-          </div>
-          <app-login (sendLoginForm)="sendLoginForm()"></app-login>
+          <app-login (sendLoginForm)="sendLoginForm($event)"></app-login>
         </mat-tab>
         <mat-tab label="Register">
           <h4 class="auth__group-title">Welcome!</h4>
           <p class="auth__group-sub-title">Create you account</p>
-          <app-register (sendSignForm)="sendSignForm()"></app-register>
-
-          <div class="auth__border-wrapper">
-            <div class="auth__border-line"></div>
-            <p class="auth__border-title">or</p>
-            <div class="auth__border-line"></div>
-          </div>
-
-          <div class="auth__google-button-wrapper">
-            <button mat-raised-button class="auth__google-button">
-              <img
-                class="auth__google-button-icon"
-                src="./assets/auth/google.svg"
-                alt="google"
-              />Sign in with Google
-            </button>
-          </div>
+          <app-register
+            (sendRegisterForm)="sendRegisterForm($event)"
+          ></app-register>
         </mat-tab>
       </mat-tab-group>
 

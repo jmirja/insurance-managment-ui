@@ -30,9 +30,9 @@
               "src/assets"
             ],
             "styles": [   
-              "./node_modules/font-awesome/scss/font-awesome.scss",             
-              "src/theme.scss"
-              
+              "src/styles.scss",
+              "src/themes/default-theme.scss",
+              "src/themes/dark-theme.scss"      
             ],
             "scripts": []
           },

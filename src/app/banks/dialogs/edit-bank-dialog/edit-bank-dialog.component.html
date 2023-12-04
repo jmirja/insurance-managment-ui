@@ -1,0 +1,81 @@
+<div id="view-account-container" class="container">
+  <mat-tab-group class="custom-tabs" [selectedIndex]="1">
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <div class="tab-header-title">
+          <span>{{ "Bank: " + data.Bank.BankId }}</span>
+        </div>
+      </ng-template>
+    </mat-tab>
+    <mat-tab>
+      <mat-progress-bar
+        mode="indeterminate"
+        *ngIf="updatingBankInProgress"
+      ></mat-progress-bar>
+      <div id="new-account-dialog-content" class="dialog-content">
+        <form [formGroup]="editBankForm">
+          <div>
+            <div class="field-row field-column-2">
+              <mat-form-field appearance="outline">
+                <mat-label>Bank Name</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Name"
+                  formControlName="BankName"
+                />
+                <!-- <mat-error *ngIf="controlsValues.Name.errors?.required">
+                  Name is <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>Bank Id</mat-label>
+                <input
+                  matInput
+                  placeholder="Enter Bank Id"
+                  formControlName="BankId"
+                />
+                <!-- <mat-error *ngIf="controlsValues.Name.errors?.required">
+                  Name is <strong>required</strong>
+                </mat-error> -->
+              </mat-form-field>
+            </div>
+          </div>
+        </form>
+        <div class="custom-button-container" mat-dialog-actions align="end">
+          <button
+            mat-raised-button
+            class="custom-button"
+            color="primary"
+            (click)="updateBank()"
+            [disabled]="
+              !editBankForm.valid ||
+              (updatingBankInProgress ? true : false) ||
+              !hasChanges
+            "
+          >
+            Update
+          </button>
+          <button
+            mat-raised-button
+            mat-dialog-close
+            class="custom-button"
+            color="primary"
+            [disabled]="updatingBankInProgress ? true : false"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </mat-tab>
+    <!-- <mat-tab>
+            <ng-template mat-tab-label>
+                <div class="tab-content">            
+                    <span>Documents</span>            
+                </div>          
+            </ng-template>              
+            <div class="custom-tab-content" disabled>
+                Load documents images here....               
+            </div>                
+        </mat-tab> -->
+  </mat-tab-group>
+</div>

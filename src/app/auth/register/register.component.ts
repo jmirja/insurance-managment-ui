@@ -8,20 +8,21 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  @Output() sendSignForm = new EventEmitter<void>();
+  @Output() sendRegisterForm = new EventEmitter<void>();
   public form!: FormGroup;
 
   public ngOnInit(): void {
     this.form = new FormGroup({
-      name: new FormControl('', [Validators.required]),
+      fullName: new FormControl('', [Validators.required]),
+      userName: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
     });
   }
 
-  public sign(): void {
+  public register(): void {
     if (this.form.valid) {
-      this.sendSignForm.emit();
+      this.sendRegisterForm.emit(this.form.value);
     }
   }
 }

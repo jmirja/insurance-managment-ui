@@ -1,0 +1,22 @@
+#view-account-container {
+    min-width: 600px;
+}
+
+.edit-account-checkbox-container {
+    display: inline-block;
+    width: calc(33.33% - 1em);
+    padding-left: 1em;
+}
+
+.security-label {
+    font-weight: bold;
+}
+
+.edit-account-dialog-paragraph {
+    max-width: 700px;
+    text-align: justify;
+}
+
+#edit-account-dialog-checkbox-container {
+    padding-bottom: 12px;
+}

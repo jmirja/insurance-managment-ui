@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class TokenStorageService {
-  TOKEN_KEY = "ProductMart.AuthToken";
+  TOKEN_KEY = "jwtToken";
   constructor() {}
 
   setToken(token: string) {
@@ -13,15 +13,14 @@ export class TokenStorageService {
     }
 
     this.removeToken();
-
-    window.localStorage.setItem(this.TOKEN_KEY, token);
+    localStorage.setItem(this.TOKEN_KEY, token);
   }
 
   getToken() {
-    return window.localStorage.getItem(this.TOKEN_KEY);
+    return localStorage.getItem(this.TOKEN_KEY);
   }
 
   removeToken() {
-    window.localStorage.removeItem(this.TOKEN_KEY);
+    localStorage.removeItem(this.TOKEN_KEY);
   }
 }
