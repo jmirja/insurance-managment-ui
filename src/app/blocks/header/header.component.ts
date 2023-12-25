@@ -5,36 +5,60 @@ import {
   Output,
   ChangeDetectorRef,
   OnDestroy,
+  OnInit,
+  ViewChild
 } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 
 import { routes } from 'src/app/core/consts';
+import { Router } from '@angular/router';
+import { AuthService } from '@core/auth/auth.service';
+import { Observable } from 'rxjs';
+import { MatSidenav} from '@angular/material/sidenav'
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnDestroy {
+export class HeaderComponent implements OnInit, OnDestroy {
   mobileQuery: MediaQueryList;
   private _mobileQueryListener: () => void;
+  public routers: typeof routes = routes;
+
+  isLoggedIn$!: Observable<boolean>;
 
   @Input()
   user: string = '';
-
   @Output()
   logoutEvent = new EventEmitter<any>();
-  public routers: typeof routes = routes;
-  constructor(private cDRef: ChangeDetectorRef, private media: MediaMatcher) {
+  // @ViewChild('sidenav') sidenav!: MatSidenav;
+
+  constructor(
+    private cDRef: ChangeDetectorRef,
+    private media: MediaMatcher,
+    private authService: AuthService
+  ) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => cDRef.detectChanges();
     this.mobileQuery.addEventListener('change', this._mobileQueryListener);
+  }
+
+  ngOnInit(): void {
+    // this.authService.userSubject.subscribe((res) => {
+    //   this.user = res;
+    // });
+
+    this.isLoggedIn$ = this.authService.isLoggedIn;
   }
 
   public logout(): void {
     this.logoutEvent.emit();
   }
 
+  // toggle() {
+  //   this.sidenav.toggle();
+  // }
   ngOnDestroy(): void {
     this.mobileQuery.removeEventListener('change', this._mobileQueryListener);
   }

@@ -1,21 +1,16 @@
-<div class="auth">
-  <div class="auth__content-block">
-    <div class="auth__content-wrapper">
-      <mat-tab-group class="auth__group">
-        <mat-tab label="Login">
-          <h4 class="auth__group-title">Welcome!</h4>
-          <app-login (sendLoginForm)="sendLoginForm($event)"></app-login>
-        </mat-tab>
-        <mat-tab label="Register">
-          <h4 class="auth__group-title">Welcome!</h4>
-          <p class="auth__group-sub-title">Create you account</p>
-          <app-register
-            (sendRegisterForm)="sendRegisterForm($event)"
-          ></app-register>
-        </mat-tab>
-      </mat-tab-group>
-
-      <!-- <p class="auth__footer-title">© 2014-{{todayDate | year}} <a href="https://flatlogic.com/">Flatlogic</a>, LLC. All rights reserved.</p> -->
-    </div>
+<div id="auth-container" class="container default-theme">
+  <div id="auth-content">
+    <mat-tab-group class="auth-group">
+      <mat-tab label="Login">
+        <h4 class="auth-group-title">Welcome!</h4>
+        <app-login (sendLoginForm)="sendLoginForm($event)"></app-login>
+      </mat-tab>
+      <mat-tab label="Register">
+        <h4 class="auth-group-title">Create you account</h4>
+        <app-register
+          (sendRegisterForm)="sendRegisterForm($event)"
+        ></app-register>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 </div>

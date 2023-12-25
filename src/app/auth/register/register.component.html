@@ -17,7 +17,7 @@
   </mat-form-field>
 
   <div class="form-actions">
-    <button class="form-actions__create" mat-raised-button color="primary" type="submit">Create your account</button>
+    <button class="form-actions__create" mat-raised-button color="primary" type="submit" [disabled]="isProcessing">Create your account</button>
   </div>
 </form>
 </mat-card>

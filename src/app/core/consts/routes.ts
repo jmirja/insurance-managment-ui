@@ -1,5 +1,6 @@
 export enum routes {
   DASHBOARD = '/dashboard',
   BANKS = '/banks',
-  LOGIN = '/auth'
+  LOGIN = '/auth',
+  REGISTER = '/auth/register',
 }

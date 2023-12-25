@@ -17,20 +17,18 @@ export class AppComponent implements OnInit {
   version: string = packageInfo.version;
 
   public routers: typeof routes = routes;
-
   user: string = '';
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(public router: Router, public authService: AuthService) {}
 
   ngOnInit(): void {
-    this.authService.userSubject.subscribe((data) => {
-      this.user = data.userName;
+    this.authService.userSubject.subscribe((res) => {
+      this.user = res;
     });
   }
 
   logout() {
-    this.authService.signOut();
-    this.user = '';
+    this.authService.logOut();
     this.router.navigate([this.routers.LOGIN]);
   }
 

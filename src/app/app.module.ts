@@ -4,32 +4,34 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './blocks/root/app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CoreModule } from '@core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { BlocksModule } from './blocks/blocks.module';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BanksComponent } from './banks/banks.component';
 import { NewBankDialogComponent } from './banks/dialogs/new-bank-dialog/new-bank-dialog.component';
 import { EditBankDialogComponent } from './banks/dialogs/edit-bank-dialog/edit-bank-dialog.component';
-import { AuthHeaderInterceptorService } from '@core/interceptors/auth-header-interceptor.service';
+import { AuthModule } from './auth/auth.module';
 
 @NgModule({
-  declarations: [ DashboardComponent, BanksComponent, NewBankDialogComponent, EditBankDialogComponent],
+  declarations: [
+    DashboardComponent,
+    BanksComponent,
+    NewBankDialogComponent,
+    EditBankDialogComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    AuthModule,
     SharedModule,
     BlocksModule,
+    CoreModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthHeaderInterceptorService,
-      multi: true,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

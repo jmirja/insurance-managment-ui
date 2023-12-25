@@ -14,7 +14,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements OnInit {
-  @Output() sendLoginForm = new EventEmitter<void>();
+  @Output() sendLoginForm = new EventEmitter<any>();
   form!: FormGroup;
   UserName = '';
   Password = '';

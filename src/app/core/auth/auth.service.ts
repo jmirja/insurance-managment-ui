@@ -6,7 +6,9 @@ import { TokenStorageService } from './token-storage.service';
 import { LogService } from '../services/log.service';
 import { IRequestUserRegister } from '../models/request/IRequestUserRegister';
 import { IRequestUserLogin } from '../models/request/IRequestUserLogin';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { Router } from '@angular/router';
+import { routes } from '@core/consts';
 
 @Injectable({
   providedIn: 'root',
@@ -16,14 +18,22 @@ export class AuthService {
   private apiUrl = '/api/auth/';
   private redirectUrlAfterLogin = '';
 
-  public userSubject = new Subject<any>();
+  private loggedIn = new BehaviorSubject<boolean>(false);
+
+  public userSubject = new Subject<string>();
   public user: string = '';
+  public routers: typeof routes = routes;
 
   constructor(
     private coreApiService: CoreApiService,
     private tokenStorage: TokenStorageService,
-    private logService: LogService
+    private logService: LogService,
+    private router: Router
   ) {}
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
 
   storeToken(token: string) {
     this.tokenStorage.setToken(token);
@@ -33,9 +43,9 @@ export class AuthService {
     this.tokenStorage.getToken();
   }
 
-  isLoggedIn(): boolean {
-    return !!this.tokenStorage.getToken();
-  }
+  // isLoggedIn(): boolean {
+  //   return !!this.tokenStorage.getToken();
+  // }
 
   set redirectUrl(url: string) {
     this.redirectUrlAfterLogin = url;
@@ -45,8 +55,9 @@ export class AuthService {
     localStorage.setItem('token', 'token');
   }
 
-  public signOut() {
+  public logOut() {
     this.tokenStorage.removeToken();
+    this.loggedIn.next(false);
   }
 
   public getUser(): string {
@@ -66,9 +77,9 @@ export class AuthService {
     return this.coreApiService
       .login(request)
       .then((result: any) => {
-        if(result) {
-          result.userName  = this.user = request.UserName;
-          this.getUser();
+        if (result) {
+          result.UserName = this.user = request.UserName;
+          this.loggedIn.next(true);
         }
         return result;
       })

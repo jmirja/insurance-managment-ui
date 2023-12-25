@@ -1,5 +1,5 @@
 <div class="menu-container" [class.menu-is-mobile]="mobileQuery.matches">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" *ngIf="isLoggedIn$ | async as isLoggedIn">
     <mat-toolbar-row>
       <button mat-icon-button (click)="sidenav.toggle()">
         <mat-icon>menu</mat-icon>
@@ -22,12 +22,13 @@
           <span fxShow="true" fxHide.lt-md="true"> {{ user }}</span>
         </a>
         <mat-menu #menu="matMenu">
-          <button (click)="logout()" mat-menu-item>logout</button>
+          <button mat-menu-item (click)="logout()" *ngIf="isLoggedIn">
+            logout
+          </button>
         </mat-menu>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>
-
   <mat-sidenav-container
     class="menu-sidenav-container"
     [style.marginTop.px]="mobileQuery.matches ? 56 : 0"

@@ -3,23 +3,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BanksComponent } from './banks/banks.component';
 import { AuthGuard } from './core/auth/auth-guard';
+import { AuthModule } from './auth/auth.module';
 
 const routes: Routes = [
+  { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
   {
     path: 'auth',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
-  // { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  {
-    path: 'dashboard',
-    pathMatch: 'full',
-    canActivate: [AuthGuard],
-    component: DashboardComponent,
-  },
-  {
-    path: 'banks',
-    component: BanksComponent,
-  },
+  { path: 'banks', component: BanksComponent, canActivate: [AuthGuard] },
+
+  // otherwise redirect to home
+  { path: '**', redirectTo: '' },
 ];
 
 @NgModule({

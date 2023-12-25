@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root"
 })
 export class TokenStorageService {
-  TOKEN_KEY = "jwtToken";
+  TOKEN_KEY = "token";
   constructor() {}
 
   setToken(token: string) {

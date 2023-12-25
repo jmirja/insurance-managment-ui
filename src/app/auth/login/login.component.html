@@ -1,16 +1,16 @@
 <mat-card>
-  <mat-progress-bar
+  <!-- <mat-progress-bar
     mode="indeterminate"
     *ngIf="isProcessing"
     id="login-progress"
   ></mat-progress-bar>
   <p id="login-logo-container">
-    <!-- <mat-icon
+    <mat-icon
       id="login-logo"
       svgIcon="logo-dark"
       aria-hidden="false"
-    ></mat-icon> -->
-  </p>
+    ></mat-icon>
+  </p> -->
   <form class="form" [formGroup]="form" (ngSubmit)="login()">
     <mat-form-field class="form__input">
       <input

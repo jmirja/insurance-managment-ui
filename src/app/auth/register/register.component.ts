@@ -11,6 +11,8 @@ export class RegisterComponent implements OnInit {
   @Output() sendRegisterForm = new EventEmitter<void>();
   public form!: FormGroup;
 
+  isProcessing = false;
+
   public ngOnInit(): void {
     this.form = new FormGroup({
       fullName: new FormControl('', [Validators.required]),
