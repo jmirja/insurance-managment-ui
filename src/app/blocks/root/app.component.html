@@ -1,4 +1,24 @@
-<app-header [user]="user" (logoutEvent)="logout()"></app-header>
-<div class="content">
-  <router-outlet></router-outlet>
+<div class="mat-app-background">
+  <div class="menu-container">
+    <app-header
+      [user]="user"
+      (logoutEvent)="logout()"
+      (toggleEvent)="sideBarToggler()"
+      *ngIf="isLoggedIn$ | async as isLoggedIn"
+    ></app-header>
+    <mat-drawer-container class="menu-sidenav-container">
+      <mat-drawer
+        mode="side"
+        [opened]="sideBarOpen"
+        *ngIf="isLoggedIn$ | async as isLoggedIn"
+      >
+        <app-sidenav></app-sidenav>
+      </mat-drawer>
+      <mat-drawer-content>
+        <div class="container">
+          <router-outlet></router-outlet>
+        </div>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </div>
 </div>

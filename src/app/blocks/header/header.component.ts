@@ -26,13 +26,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private _mobileQueryListener: () => void;
   public routers: typeof routes = routes;
 
-  isLoggedIn$!: Observable<boolean>;
-
   @Input()
   user: string = '';
   @Output()
   logoutEvent = new EventEmitter<any>();
-  // @ViewChild('sidenav') sidenav!: MatSidenav;
+  @Output() toggleEvent: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private cDRef: ChangeDetectorRef,
@@ -49,7 +47,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     //   this.user = res;
     // });
 
-    this.isLoggedIn$ = this.authService.isLoggedIn;
+  }
+
+  toggleSidebar() {
+    this.toggleEvent.emit();
   }
 
   public logout(): void {

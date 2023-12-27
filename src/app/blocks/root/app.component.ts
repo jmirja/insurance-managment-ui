@@ -5,6 +5,7 @@ import { AuthService } from 'src/app/core/auth/auth.service';
 import { routes } from 'src/app/core/consts';
 import { environment } from 'src/environments/environment';
 import packageInfo from 'package.json';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,8 @@ export class AppComponent implements OnInit {
 
   public routers: typeof routes = routes;
   user: string = '';
+  sideBarOpen = false;
+  isLoggedIn$!: Observable<boolean>;
 
   constructor(public router: Router, public authService: AuthService) {}
 
@@ -25,6 +28,11 @@ export class AppComponent implements OnInit {
     this.authService.userSubject.subscribe((res) => {
       this.user = res;
     });
+    this.isLoggedIn$ = this.authService.isLoggedIn;
+  }
+
+  sideBarToggler() {
+    this.sideBarOpen = !this.sideBarOpen;
   }
 
   logout() {
