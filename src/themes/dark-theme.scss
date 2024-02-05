@@ -1,9 +1,10 @@
-@import '@angular/material/theming';
-@include mat-core();
+@use '@angular/material' as mat;
+
+@include mat.core();
 
 @import "./functions.scss";
 
-$black-palette: (
+$black-primary-palette: (
     50 : #e0e0e0,
     100 : #b3b3b3,
     200 : #808080,
@@ -18,8 +19,7 @@ $black-palette: (
     A200 : #8c8c8c,
     A400 : #737373,
     A700 : #666666,
-    contrast: (
-        50 : #000000,
+    contrast: (50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #ffffff,
@@ -36,19 +36,49 @@ $black-palette: (
     )
 );
 
-$dark-color-primary: mat-palette($black-palette, 900);
-$dark-color-accent:  mat-palette($black-palette, 400);
-$dark-color-warn:    mat-palette($mat-red);
-
-$dark-theme: mat-dark-theme(
-    $dark-color-primary,
-    $dark-color-accent,
-    $dark-color-warn
+$black-accent-palette: (
+    50 : #fffbee,
+    100 : #fff4d4,
+    200 : #ffedb8,
+    300 : #ffe69c,
+    400 : #ffe086,
+    500 : #ffdb71,
+    600 : #ffd769,
+    700 : #ffd25e,
+    800 : #ffcd54,
+    900 : #ffc442,
+    A100 : #ffffff,
+    A200 : #ffffff,
+    A400 : #fff8ea,
+    A700 : #fff0d0,
+    contrast: (50 : #000000,
+        100 : #000000,
+        200 : #000000,
+        300 : #000000,
+        400 : #000000,
+        500 : #000000,
+        600 : #000000,
+        700 : #000000,
+        800 : #000000,
+        900 : #000000,
+        A100 : #000000,
+        A200 : #000000,
+        A400 : #000000,
+        A700 : #000000,
+    )
 );
 
-@include angular-material-theme($dark-theme);
+$dark-color-primary: mat-palette($black-primary-palette, 900);
+$dark-color-accent: mat-palette($black-accent-palette, 400);
+$dark-color-warn: mat-palette($mat-red);
 
-.dark-theme {    
+$dark-theme: mat.define-dark-theme((color: (primary: $dark-color-primary,
+                accent: $dark-color-accent,
+                warn: $dark-color-warn,
+            ),
+        ));
+
+.dark-theme {
     @include angular-material-theme($dark-theme);
     @include generate-theme-vars($dark-theme);
 }

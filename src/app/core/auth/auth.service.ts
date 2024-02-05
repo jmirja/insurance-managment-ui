@@ -8,7 +8,7 @@ import { IRequestUserRegister } from '../models/request/IRequestUserRegister';
 import { IRequestUserLogin } from '../models/request/IRequestUserLogin';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { routes } from '@core/consts';
+import { routes } from '@core/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -19,6 +19,7 @@ export class AuthService {
   private redirectUrlAfterLogin = '';
 
   private loggedIn = new BehaviorSubject<boolean>(false);
+  private registeredIn = new BehaviorSubject<boolean>(false);
 
   public userSubject = new Subject<string>();
   public user: string = '';
@@ -29,10 +30,14 @@ export class AuthService {
     private tokenStorage: TokenStorageService,
     private logService: LogService,
     private router: Router
-  ) {}
+  ) { }
 
   get isLoggedIn() {
     return this.loggedIn.asObservable();
+  }
+
+  get isRegisteredIn() {
+    return this.registeredIn.asObservable();
   }
 
   storeToken(token: string) {
@@ -42,10 +47,6 @@ export class AuthService {
   getToken() {
     this.tokenStorage.getToken();
   }
-
-  // isLoggedIn(): boolean {
-  //   return !!this.tokenStorage.getToken();
-  // }
 
   set redirectUrl(url: string) {
     this.redirectUrlAfterLogin = url;
@@ -68,9 +69,12 @@ export class AuthService {
     return this.coreApiService
       .register(request)
       .then((result: any) => {
+        if (result) {
+          this.registeredIn.next(true);
+        }
         return result;
       })
-      .catch((err: any) => {});
+      .catch((err: any) => { });
   }
 
   public login(request: IRequestUserLogin) {
@@ -83,6 +87,6 @@ export class AuthService {
         }
         return result;
       })
-      .catch((err: any) => {});
+      .catch((err: any) => { });
   }
 }

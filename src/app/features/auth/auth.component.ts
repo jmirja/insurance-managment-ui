@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { routes } from '../core/consts';
-import { AuthService } from '../core/auth/auth.service';
-import { IRequestUserRegister } from '../core/models/request/IRequestUserRegister';
-import { IRequestUserLogin } from '../core/models/request/IRequestUserLogin';
+import { AuthService } from '@core/auth/auth.service';
+import { IRequestUserLogin } from '@core/models/request/IRequestUserLogin';
+import { IRequestUserRegister } from '@core/models/request/IRequestUserRegister';
 
 @Component({
   selector: 'app-auth',
@@ -12,14 +10,12 @@ import { IRequestUserLogin } from '../core/models/request/IRequestUserLogin';
 })
 export class AuthComponent implements OnInit {
   public todayDate: Date = new Date();
-  public routers: typeof routes = routes;
+  isProcessing = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
-    if (this.authService.isLoggedIn) {
-      console.log(this.authService.isLoggedIn);
-    }
+
   }
 
   public sendLoginForm($event: any) {
@@ -31,19 +27,18 @@ export class AuthComponent implements OnInit {
       if (res != null) {
         this.authService.storeToken(res.Token);
         this.authService.userSubject.next(res.UserName);
-        this.router.navigate([this.routers.DASHBOARD]);
       }
     });
   }
 
   public sendRegisterForm($event: any): void {
     const request: IRequestUserRegister = {
-      FullName: $event.fullName,
+      FullName: $event.fullname,
+      UserName: $event.username,
       Email: $event.email,
-      UserName: $event.userName,
       Password: $event.password,
     };
     this.authService.register(request);
-    this.router.navigate([this.routers.LOGIN]).then();
   }
 }
+

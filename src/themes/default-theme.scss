@@ -1,5 +1,6 @@
-@import '@angular/material/theming';
-@include mat-core();
+@use '@angular/material' as mat;
+
+@include mat.core();
 
 @import "./functions.scss";
 
@@ -20,8 +21,7 @@ $default-primary-palette: (
     A200 : #2525ff,
     A400 : #0000f1,
     A700 : #0000d7,
-    contrast: (
-        50 : #000000,
+    contrast: (50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #ffffff,
@@ -53,8 +53,7 @@ $default-accent-palette: (
     A200 : #fff9f4,
     A400 : #ffdec1,
     A700 : #ffd1a7,
-    contrast: (
-        50 : #000000,
+    contrast: (50 : #000000,
         100 : #000000,
         200 : #000000,
         300 : #000000,
@@ -71,15 +70,14 @@ $default-accent-palette: (
     )
 );
 
-$default-color-primary: mat-palette($default-primary-palette, 900);
-$default-color-accent:  mat-palette($default-accent-palette, 700);
-$default-color-warn:    mat-palette($mat-red, 900);
+$default-color-primary: mat.define-palette($default-primary-palette, 900);
+$default-color-accent: mat.define-palette($default-accent-palette, 700);
+$default-color-warn: mat.define-palette($mat-red, 900);
 
-$default-theme: mat-light-theme(
-    $default-color-primary,
-    $default-color-accent,
-    $default-color-warn
-);
+$default-theme: mat.define-light-theme((color: (primary: $default-color-primary,
+                accent: $default-color-accent,
+                warn: $default-color-warn )));
+
 
 .default-theme {
     @include angular-material-theme($default-theme);

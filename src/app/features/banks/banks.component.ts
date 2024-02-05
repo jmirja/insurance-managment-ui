@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { Bank } from '@core/models/data/bank';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -41,10 +41,8 @@ export class BanksComponent {
   selectedRowBank!: Bank;
 
   isBanksFailedToRetrieve: boolean = false;
-  isAutoArrange: boolean = true;
-  isGrid: boolean = true;
 
-  constructor(private bankService: BankService, private matDialog: MatDialog) {}
+  constructor(private bankService: BankService, private matDialog: MatDialog) { }
 
   ngOnInit(): void {
     this.requestBanksList();
@@ -80,10 +78,6 @@ export class BanksComponent {
     // this.contextMenuService = null;
   }
 
-  // public hasAccessKey(key: number) {
-  //   return this.session.hasAccessKey(key);
-  // }
-
   requestBanksList() {
     this.bankService.getBanks().then((result: any) => {
       if (result != undefined && result != null) {
@@ -100,7 +94,6 @@ export class BanksComponent {
         this.banksLength = result.length;
 
         this.totalNoOfBanks = this.banksLength;
-
         this.isBanksFailedToRetrieve = false;
         this.refreshDataSource();
       }
@@ -144,7 +137,7 @@ export class BanksComponent {
       .map((c) => c.columnName);
   }
 
-  onSearchBank() {}
+  onSearchBank() { }
 
   createNewBank() {
     const newBankDialogRef = this.matDialog.open(NewBankDialogComponent, {
@@ -164,11 +157,9 @@ export class BanksComponent {
           }
           this.totalNoOfBanks += 1;
           this.banksLength += 1;
-          //newBank = null;
           this.refreshDataSource();
           newBankDialogRef.close();
         }
-        //newBankData = null;
       });
 
     newBankDialogRef.afterClosed().subscribe((result) => {
@@ -176,9 +167,9 @@ export class BanksComponent {
     });
   }
 
-  searchBoxKeyUp($event: any) {}
+  searchBoxKeyUp($event: any) { }
 
-  clearSearch() {}
+  clearSearch() { }
 
   onTblRowDblClick(bank: Bank) {
     this.viewBankDetails(bank);
@@ -210,4 +201,5 @@ export class BanksComponent {
         }
       });
   };
+
 }

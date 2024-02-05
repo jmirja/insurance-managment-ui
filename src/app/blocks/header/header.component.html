@@ -6,15 +6,8 @@
     <a class="logo" [routerLink]="['/']"></a>
     <span class="app-title">Insurance Managment</span>
     <span class="header-spacer"></span>
-    <a
-      *ngIf="!user"
-      mat-button
-      routerLink="{{ routers.LOGIN }}"
-      routerLinkActive="active-link"
-    >
-      <mat-icon> person_outliner </mat-icon>
-      Login
-    </a>
+    <div></div>
+    <mat-slide-toggle><mat-icon>brightness_3</mat-icon></mat-slide-toggle>
     <div>
       <a mat-button *ngIf="user" [matMenuTriggerFor]="menu">
         <mat-icon>account_box</mat-icon>

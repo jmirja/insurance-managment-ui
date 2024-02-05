@@ -1,16 +1,14 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { CoreRoutingModule } from './core-routing.module';
-import { SharedModule } from '../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthHeaderInterceptorService } from './interceptors/auth-header-interceptor.service';
 import { HttpErrorInterceptorService } from './interceptors/http-error-interceptor.service';
 import { throwIfAlreadyLoaded } from './utils/module-import-guard';
-
+import { SharedModule } from '@shared/shared.module';
 @NgModule({
   declarations: [],
-  imports: [CommonModule, CoreRoutingModule, SharedModule],
+  imports: [CoreRoutingModule, SharedModule],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container default-theme">
   <mat-tab-group class="custom-tabs">
     <mat-tab disabled>
       <ng-template mat-tab-label>
@@ -18,11 +18,15 @@
     <div>
       <div class="field-row field-column-2">
         <mat-form-field appearance="outline">
-          <mat-label>Bank Name</mat-label>
-          <input matInput placeholder="Enter Name" formControlName="BankName" />
-          <!-- <mat-error *ngIf="controlsValues.BankName.errors?.required">
-            Name is <strong>required</strong>
-          </mat-error> -->
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Enter Bank Name"
+            formControlName="BankName"
+          />
+          <mat-error *ngIf="controlsValues.BankName.errors?.required">
+            Bank Name is <strong>required</strong>
+          </mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
           <mat-label>Bank Id</mat-label>
@@ -31,9 +35,9 @@
             placeholder="Enter Bank Id"
             formControlName="BankId"
           />
-          <!-- <mat-error *ngIf="controlsValues.BankId.errors?.required">
+          <mat-error *ngIf="controlsValues.BankId.errors?.required">
             Id is <strong>required</strong>
-          </mat-error> -->
+          </mat-error>
         </mat-form-field>
       </div>
     </div>
@@ -46,9 +50,7 @@
       class="custom-button"
       color="primary"
       (click)="onCreateBank()"
-      [disabled]="
-        !newBankForm.valid || (addingBankInProgress ? true : false)
-      "
+      [disabled]="!newBankForm.valid || (addingBankInProgress ? true : false)"
     >
       Save
     </button>

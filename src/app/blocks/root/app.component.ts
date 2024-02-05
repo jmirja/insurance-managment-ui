@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthService } from 'src/app/core/auth/auth.service';
-import { routes } from 'src/app/core/consts';
+import { routes } from 'src/app/core/constants';
 import { environment } from 'src/environments/environment';
 import packageInfo from 'package.json';
 import { Observable } from 'rxjs';
@@ -13,6 +13,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
+  public themeClass: string = 'default-theme';
   clientName: string = environment.clientName.toLocaleLowerCase();
   title: string = environment.applicationName;
   version: string = packageInfo.version;
