@@ -95,15 +95,15 @@
   >
     <mat-table
       id="bank-list-table"
-      #accountListTable
+      #bankListTable
       [dataSource]="bankListDS"
       matSort
       multiTemplateDataRows
       class="custom-table alternating-row-color clickable-table mat-elevation-z8"
     >
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef>ID</th>
-        <td mat-cell *matCellDef="let banks">{{ banks.BankId }}</td>
+        <mat-header-cell mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell mat-cell *matCellDef="let banks">{{ banks.BankId }}</mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="name">
@@ -111,6 +111,22 @@
           >Bank Name</mat-header-cell
         >
         <mat-cell *matCellDef="let banks">{{ banks.BankName }}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="action">
+        <mat-header-cell class="tcw-100" *matHeaderCellDef
+          >Action</mat-header-cell
+        >
+        <mat-cell *matCellDef="let row">
+          <button
+            mat-raised-button
+            class="custom-button"
+            color="accent"
+            (click)="onDeleteBank(row)"
+          >
+            Delete
+          </button>
+        </mat-cell>
       </ng-container>
 
       <mat-header-row

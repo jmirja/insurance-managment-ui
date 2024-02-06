@@ -6,6 +6,7 @@ import { BankService } from '@core/services/bank.service';
 import { MatDialog } from '@angular/material/dialog';
 import { NewBankDialogComponent } from './dialogs/new-bank-dialog/new-bank-dialog.component';
 import { EditBankDialogComponent } from './dialogs/edit-bank-dialog/edit-bank-dialog.component';
+import { ConfirmationDialogComponent } from '@shared/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-banks',
@@ -25,6 +26,7 @@ export class BanksComponent {
   banksListColumn: { columnName: string; isShow: boolean }[] = [
     { columnName: 'id', isShow: true },
     { columnName: 'name', isShow: true },
+    { columnName: 'action', isShow: true },
   ];
 
   banksLength: number = 0;
@@ -90,9 +92,7 @@ export class BanksComponent {
           }
         );
         resultBankList = null;
-
         this.banksLength = result.length;
-
         this.totalNoOfBanks = this.banksLength;
         this.isBanksFailedToRetrieve = false;
         this.refreshDataSource();
@@ -201,5 +201,50 @@ export class BanksComponent {
         }
       });
   };
+
+  updateBankList(bankId: number): void {
+    if (bankId) {
+      const selectedIndex = this.bankList.findIndex(
+        (obj) => obj.BankId == bankId
+      );
+      this.bankList.splice(selectedIndex, 1);
+      this.refreshDataSource();
+    }
+  }
+
+  deleteBank(bank: any) {
+    this.bankService.deleteBank(bank.BankId).then((result: any) => {
+      if (result) {
+        this.updateBankList(bank.BankId);
+      }
+    });
+  }
+
+  onDeleteBank(bank: any) {
+    const confirmationDialogRef = this.matDialog.open(
+      ConfirmationDialogComponent,
+      {
+        panelClass: 'custom-dialog',
+        data: {
+          Message:
+            'Are you sure do you want to remove ' + bank.BankName + '?',
+        },
+      }
+    );
+
+    const subConfirmationDialogRef =
+      confirmationDialogRef.componentInstance.onConfirmEvent.subscribe(
+        (result: boolean) => {
+          if (result) {
+            this.deleteBank(bank);
+          }
+          confirmationDialogRef.close();
+        }
+      );
+
+    confirmationDialogRef.afterClosed().subscribe((result) => {
+      subConfirmationDialogRef.unsubscribe();
+    });
+  }
 
 }

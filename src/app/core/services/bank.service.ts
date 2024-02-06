@@ -26,4 +26,10 @@ export class BankService {
       return result;
     });
   }
+  
+  deleteBank(bankId: number) {
+    return this.coreApiService.deleteBank(bankId).then((result: any) => {
+      return result;
+    });
+  }
 }

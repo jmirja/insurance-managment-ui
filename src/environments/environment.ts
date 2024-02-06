@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   clientName: 'Insurance',
   applicationName: 'Insurance Managment',
-  apiUrl: 'https://localhost:3000/',
+  apiUrl: 'https://localhost:3000/api/v1/',
   userBrowserSessionKey: 'imsk',
   allowLocalHostTesting: true,
 };
