@@ -1,8 +1,8 @@
-#view-account-container {
+#view-bank-container {
     min-width: 600px;
 }
 
-.edit-account-checkbox-container {
+.edit-bank-checkbox-container {
     display: inline-block;
     width: calc(33.33% - 1em);
     padding-left: 1em;
@@ -12,11 +12,11 @@
     font-weight: bold;
 }
 
-.edit-account-dialog-paragraph {
+.edit-bank-dialog-paragraph {
     max-width: 700px;
     text-align: justify;
 }
 
-#edit-account-dialog-checkbox-container {
+#edit-bank-dialog-checkbox-container {
     padding-bottom: 12px;
 }

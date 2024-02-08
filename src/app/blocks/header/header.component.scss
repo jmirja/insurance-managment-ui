@@ -13,40 +13,8 @@
   right: 0;
 }
 
-.menu-is-mobile .menu-toolbar {
-  position: fixed;
-  /* Make sure the toolbar will stay on top of the content as it scrolls past. */
-  z-index: 2;
-}
-
-.menu-sidenav-container {
-  /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
-     causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
-  flex: 1;
-}
-
-.menu-is-mobile .menu-sidenav-container {
-  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-     `<body>` to be our scrolling element for mobile layouts. */
-  flex: 1 0 auto;
-}
-
 .toolbar-logo {
   margin-left: 5px;
 }
 
-.active {
-  font-weight: bold;
-  background-color: #CFCFCF;
-  color: darkred;
-}
-
-.active:active {
-  font-weight: bold;
-  background-color: lightpink;
-}
-
-.active-icon {
-  color: red;
-}
 

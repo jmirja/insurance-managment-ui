@@ -1,4 +1,4 @@
-<div class="container default-theme">
+<div class="container">
   <mat-tab-group class="custom-tabs">
     <mat-tab disabled>
       <ng-template mat-tab-label>
@@ -13,10 +13,10 @@
   mode="indeterminate"
   *ngIf="addingBankInProgress"
 ></mat-progress-bar>
-<div id="new-account-dialog-content" class="dialog-content">
+<div id="new-bank-dialog-content" class="dialog-content">
   <form [formGroup]="newBankForm">
     <div>
-      <div class="field-row field-column-2">
+      <div class="field-row field-column-3">
         <mat-form-field appearance="outline">
           <mat-label>Name</mat-label>
           <input
@@ -52,14 +52,14 @@
       (click)="onCreateBank()"
       [disabled]="!newBankForm.valid || (addingBankInProgress ? true : false)"
     >
-      Save
+      Add
     </button>
     <button
       mat-raised-button
       mat-dialog-close
       class="custom-button"
+      [disabled]="addingBankInProgress"
       color="primary"
-      [disabled]="addingBankInProgress ? true : false"
     >
       Close
     </button>
