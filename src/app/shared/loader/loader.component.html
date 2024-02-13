@@ -1,33 +1,27 @@
-<div class="container">
-  <div
-    id="accounts-loader-container"
-    class="container"
-    *ngIf="totalNoOfItems == 0"
-  >
-    <div id="accounts-loader" *ngIf="isFailedToRetrieve == false">
-      <mat-spinner id="accounts-loader-icon" [diameter]="32"></mat-spinner>
-      <span>Loading</span>
-    </div>
-    <div id="accounts-warning-overlay" *ngIf="isFailedToRetrieve == true">
-      <div id="accounts-warning-container">
-        <div class="material-icons-container">
-          <span
-            id="accounts-warning-icon"
-            class="material-icons material-icons-default-size"
-            >warning</span
-          >
-        </div>
-        <span>Failed to retrieve</span>
-        <div>
-          <button
-            mat-raised-button
-            class="custom-button"
-            color="primary"
-            (click)="retryRequest()"
-          >
-            Try Again
-          </button>
-        </div>
+<div id="loader-container" class="container" *ngIf="totalNoOfItems == 0">
+  <div id="loader" *ngIf="isFailedToRetrieve == false">
+    <mat-spinner id="loader-icon" [diameter]="32"></mat-spinner>
+    <span>Loading</span>
+  </div>
+  <div id="loader-warning-overlay" *ngIf="isFailedToRetrieve == true">
+    <div id="loader-warning-container">
+      <div class="material-icons-container">
+        <span
+          id="loader-warning-icon"
+          class="material-icons material-icons-default-size"
+          >warning</span
+        >
+      </div>
+      <span>Failed to retrieve</span>
+      <div>
+        <button
+          mat-raised-button
+          class="custom-button"
+          color="primary"
+          (click)="retryRequest()"
+        >
+          Try Again
+        </button>
       </div>
     </div>
   </div>

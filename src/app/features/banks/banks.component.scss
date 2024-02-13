@@ -1,38 +1,3 @@
-#banks-loader-container {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  display: table;
-
-  #banks-loader {
-    display: table-cell;
-    vertical-align: middle;
-    line-height: 28px;
-
-    #banks-loader-icon {
-      margin: 0 auto;
-    }
-  }
-}
-
-#banks-warning-overlay {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  display: table;
-
-  #banks-warning-container {
-    display: table-cell;
-    vertical-align: middle;
-    line-height: 28px;
-
-    #banks-warning-icon {
-      margin: 0 auto;
-      font-size: 36px;
-    }
-  }
-}
-
 #bank-panel-container {
   overflow: hidden;
 }
@@ -50,7 +15,7 @@
   height: calc((100%) - 115px);
 }
 
-#bank-list-table > mat-row:hover {
+#bank-list-table>mat-row:hover {
   cursor: pointer;
 }
 

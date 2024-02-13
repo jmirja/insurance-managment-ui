@@ -5,15 +5,15 @@
     (toggleEvent)="sideBarToggler()"
     *ngIf="isLoggedIn$ | async as isLoggedIn"
   ></app-header>
-  <mat-drawer-container autosize="true">
+  <mat-drawer-container>
     <mat-drawer
       mode="side"
-      [opened]="sideBarOpen"
       fixedInViewport="true"
       fixedTopGap="56"
-      *ngIf="isLoggedIn$ | async as isLoggedIn"
+      [opened]="sideBarOpen"
+      *ngIf="isLoggedIn$ | async"
     >
-      <app-sidenav></app-sidenav>
+      <app-sidebar-list></app-sidebar-list>
     </mat-drawer>
     <mat-drawer-content>
       <div class="mat-drawer-content">

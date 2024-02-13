@@ -6,6 +6,7 @@ import { routes } from 'src/app/core/constants';
 import { environment } from 'src/environments/environment';
 import packageInfo from 'package.json';
 import { Observable } from 'rxjs';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public themeClass: string = 'default-theme';
+  themeClass: string = 'default-theme';
   clientName: string = environment.clientName.toLocaleLowerCase();
   title: string = environment.applicationName;
   version: string = packageInfo.version;
@@ -23,7 +24,9 @@ export class AppComponent implements OnInit {
   sideBarOpen = false;
   isLoggedIn$!: Observable<boolean>;
 
-  constructor(public router: Router, public authService: AuthService) {}
+  constructor(private overlayContainer: OverlayContainer, public router: Router, public authService: AuthService,) {
+    this.overlayContainer.getContainerElement().classList.add(this.themeClass);
+  }
 
   ngOnInit(): void {
     this.authService.userSubject.subscribe((res) => {

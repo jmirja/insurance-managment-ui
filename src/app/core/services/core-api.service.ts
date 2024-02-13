@@ -45,6 +45,22 @@ export class CoreApiService {
       });
   }
 
+  putRequestToAPI(category: string, method: string, param: any): any {
+    let body = param;
+
+    return this.http
+      .put(this.url + category + '/' + method, body)
+      .toPromise()
+      .then((data: any) => {
+        try {
+          return data;
+        } catch (error) {
+          console.log(error);
+          return null;
+        }
+      });
+  }
+
   deleteRequestAPI(method: string, param: any): any {
     let path = this.getMethodCategory(method) + '/' + method;
 
@@ -140,7 +156,7 @@ export class CoreApiService {
 
   updateBank(request: IRequestBank) {
     if (request == null) return null;
-    return this.postRequestToAPI('Bank', 'Update', request)
+    return this.putRequestToAPI('Bank', 'Update', request)
       .then((result: any) => {
         return result;
       })

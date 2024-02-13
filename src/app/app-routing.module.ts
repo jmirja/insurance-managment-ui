@@ -4,7 +4,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AuthGuard } from '@core/auth/auth-guard';
 
 const routes: Routes = [
+
   { path: '', component: DashboardComponent, canActivate: [AuthGuard] },
+
   {
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.module').then((m) => m.AuthModule),
@@ -13,6 +15,7 @@ const routes: Routes = [
     path: 'banks', canActivate: [AuthGuard],
     loadChildren: () => import('@banks/banks.module').then((m) => m.BanksModule)
   },
+
 
   // otherwise redirect to home
   { path: '**', redirectTo: '' },

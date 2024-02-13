@@ -22,16 +22,26 @@ const globalRippleConfig: RippleGlobalOptions = {
 };
 
 @NgModule({
+  declarations: [
+    LoaderComponent,
+    ConfirmationDialogComponent],
   imports: [
     CommonModule,
-    SharedRoutingModule,
     RouterModule,
+    SharedRoutingModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
   ],
-  declarations: [LoaderComponent, ConfirmationDialogComponent],
-  exports: [CommonModule, RouterModule, MaterialModule, FormsModule, ReactiveFormsModule, LoaderComponent, ConfirmationDialogComponent],
+  exports: [
+    CommonModule,
+    RouterModule,
+    MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
+    LoaderComponent,
+    ConfirmationDialogComponent],
+
   providers: [
     { provide: MAT_RIPPLE_GLOBAL_OPTIONS, useValue: globalRippleConfig },
   ],

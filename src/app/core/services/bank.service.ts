@@ -6,7 +6,7 @@ import { IRequestBank } from '../models/request/IRequestBank';
   providedIn: 'root',
 })
 export class BankService {
-  constructor(private coreApiService: CoreApiService) {}
+  constructor(private coreApiService: CoreApiService) { }
 
 
   getBanks() {
@@ -22,11 +22,11 @@ export class BankService {
   }
 
   updateBank(request: IRequestBank) {
-    return this.coreApiService.createBank(request).then((result: any) => {
+    return this.coreApiService.updateBank(request).then((result: any) => {
       return result;
     });
   }
-  
+
   deleteBank(bankId: number) {
     return this.coreApiService.deleteBank(bankId).then((result: any) => {
       return result;

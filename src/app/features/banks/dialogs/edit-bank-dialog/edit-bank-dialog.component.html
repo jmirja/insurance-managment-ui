@@ -1,7 +1,7 @@
-<div id="view-account-container">
+<div id="edit-bank-container">
   <div class="container">
     <mat-tab-group class="custom-tabs">
-      <mat-tab>
+      <mat-tab disabled>
         <ng-template mat-tab-label>
           <div class="tab-header-title">
             <span>{{ "Bank: " + data.Bank.BankName }}</span>
@@ -14,7 +14,7 @@
     mode="indeterminate"
     *ngIf="updatingBankInProgress"
   ></mat-progress-bar>
-  <div id="new-account-dialog-content" class="dialog-content">
+  <div id="edit-bank-dialog-content" class="dialog-content">
     <form [formGroup]="editBankForm">
       <div>
         <div class="field-row field-column-2">

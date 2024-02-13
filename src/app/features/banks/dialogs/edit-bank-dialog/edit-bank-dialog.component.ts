@@ -14,7 +14,7 @@ import { IRequestBank } from 'src/app/core/models/request/IRequestBank';
   styleUrls: ['./edit-bank-dialog.component.scss'],
 })
 export class EditBankDialogComponent implements OnInit {
-  editBankForm!: FormGroup;
+  editBankForm: FormGroup;
   updatingBankInProgress: boolean = false;
 
   editBankEvent = new EventEmitter();
@@ -37,9 +37,9 @@ export class EditBankDialogComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    // this.editBankForm = null;
-    // this.selectedBankData = null;
-    // this.bankService = null;
+    this.editBankForm = null;
+    this.editBankEvent = null;
+    this.bankService = null;
     this.data = null;
   }
 
@@ -52,7 +52,7 @@ export class EditBankDialogComponent implements OnInit {
       this.editBankForm.disable();
       this.updatingBankInProgress = true;
       let request: IRequestBank = {
-        BankId: this.controlsValues.BankId.value,
+        BankId: parseInt(this.controlsValues.BankId.value),
         BankName: this.controlsValues.BankName.value,
       };
 

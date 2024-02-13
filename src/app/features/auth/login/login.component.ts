@@ -26,6 +26,9 @@ export class LoginComponent implements OnInit {
   isProcessing = false;
   public routers: typeof routes = routes;
 
+
+  constructor(private authService: AuthService, private router: Router) { }
+
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       userName: new FormControl(this.userName, [Validators.required]),
@@ -33,11 +36,10 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  constructor(private authService: AuthService, private router: Router) { }
-
   get controlsValues() {
     return this.loginForm.controls;
   }
+
   onLogin(): void {
     this.isSubmitted = true;
     if (this.loginForm.valid) {

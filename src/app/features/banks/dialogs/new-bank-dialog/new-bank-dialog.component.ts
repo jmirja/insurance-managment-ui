@@ -10,7 +10,7 @@ import { BankService } from 'src/app/core/services/bank.service';
   styleUrls: ['./new-bank-dialog.component.scss'],
 })
 export class NewBankDialogComponent implements OnInit {
-  newBankForm!: FormGroup;
+  newBankForm: FormGroup;
   newBankEvent = new EventEmitter();
 
   addingBankInProgress: boolean = false;
@@ -33,13 +33,12 @@ export class NewBankDialogComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    // this.newBankForm = null;
-    // this.newBank = null;
-    // this.newAccountEvent = null;
-    // this.addingBankInProgress = null;
-    // this.data = null;
-    // this.bankService = null;
-    // this.formBuilder = null;
+    this.newBankForm = null;
+    this.newBankEvent = null;
+    this.addingBankInProgress = null;
+    this.data = null;
+    this.bankService = null;
+    this.formBuilder = null;
   }
 
   onCreateBank() {
@@ -48,7 +47,7 @@ export class NewBankDialogComponent implements OnInit {
       this.newBankForm.disable();
 
       let requestNewBank: IRequestBank = {
-        BankId: this.controlsValues.BankId.value,
+        BankId: 0,
         BankName: this.controlsValues.BankName.value,
       };
 

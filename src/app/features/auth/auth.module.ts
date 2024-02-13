@@ -8,6 +8,6 @@ import { SharedModule } from '@shared/shared.module';
 
 @NgModule({
   declarations: [AuthComponent, LoginComponent, RegisterComponent],
-  imports: [AuthRoutingModule, SharedModule],
+  imports: [AuthRoutingModule, SharedModule]
 })
 export class AuthModule { }

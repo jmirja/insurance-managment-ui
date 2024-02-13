@@ -1,20 +1,10 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="header-toolbar">
   <mat-toolbar-row>
     <button mat-icon-button (click)="toggleSidebar()">
       <mat-icon>menu</mat-icon>
     </button>
-    <span class="app-title">Insurance Managment</span>
-    <!-- <span class="header-spacer"></span> -->
+    <span id="app-version">Insurance Managment</span>
     <span class="toolbar-spacer"></span>
-    <!-- <div>
-      <a mat-button *ngIf="user" [matMenuTriggerFor]="menu">
-        <mat-icon>account_box</mat-icon>
-        <span fxShow="true" fxHide.lt-md="true"> {{ user }}</span>
-      </a>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="logout()">logout</button>
-      </mat-menu>
-    </div> -->
     <div
       id="logout-container"
       class="header-toolbor-menu-item-container"

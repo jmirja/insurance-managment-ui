@@ -15,10 +15,10 @@ import { SharedModule } from '@shared/shared.module';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule,
-    CoreModule,
-    BlocksModule,
     SharedModule,
+    HttpClientModule,
+    BlocksModule,
+    CoreModule,
   ],
   providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }
   ],

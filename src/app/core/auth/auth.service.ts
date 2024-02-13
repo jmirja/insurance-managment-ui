@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 
-import { IUser } from '../models';
 import { CoreApiService } from '../services/core-api.service';
 import { TokenStorageService } from './token-storage.service';
 import { LogService } from '../services/log.service';

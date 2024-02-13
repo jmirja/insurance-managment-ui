@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Bank } from '@core/models/data/bank';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
@@ -14,7 +14,7 @@ import { ConfirmationDialogComponent } from '@shared/confirmation-dialog/confirm
   styleUrls: ['./banks.component.scss'],
 })
 export class BanksComponent {
-  searchBank: string = '';
+  searchBank: string;
   isSearching: boolean = false;
   searchInProgress: boolean = false;
   searchFound: boolean = false;
@@ -38,9 +38,7 @@ export class BanksComponent {
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild('bankListTable', { read: ElementRef })
-  bankListTable!: ElementRef;
-
-  selectedRowBank!: Bank;
+  bankListTable: ElementRef;
 
   isBanksFailedToRetrieve: boolean = false;
 
@@ -55,29 +53,23 @@ export class BanksComponent {
   }
 
   ngOnDestroy(): void {
-    // this.searchBank = null;
-    // this.isSearching = null;
-    // this.searchInProgress = null;
-    // this.searchFound = null;
-    // this.bankList = null;
-    // this.tmpBankList = null;
-    // this.accountListDS = null;
-    // this.banksListColumn = null;
-    // this.banksLength = null;
-    // this.banksOffset = null;
-    // this.banksPageSize = null;
-    // this.banksPageSizeOption = null;
-    // this.totalNoOfBanks = null;
-    // this.sort = null;
-    // this.selectedRowAccount = null;
-    // this.isForApprovalChecked = null;
-    // this.isAccountsFailedToRetrieve = null;
-    // this.isAutoArrange = null;
-    // this.isGrid = null;
-    // this.bankService = null;
-    // this.managerSessionService = null;
-    // this.matDialog = null;
-    // this.contextMenuService = null;
+    this.searchBank = null;
+    this.isSearching = null;
+    this.searchInProgress = null;
+    this.searchFound = null;
+    this.bankList = null;
+    this.tmpBankList = null;
+    this.bankListDS = null;
+    this.banksListColumn = null;
+    this.banksLength = null;
+    this.banksOffset = null;
+    this.banksPageSize = null;
+    this.banksPageSizeOption = null;
+    this.totalNoOfBanks = null;
+    this.sort = null;
+    this.isBanksFailedToRetrieve = null;
+    this.bankService = null;
+    this.matDialog = null;
   }
 
   requestBanksList() {
@@ -189,12 +181,12 @@ export class BanksComponent {
               return bank.BankId == updatedBankData.BankId;
             });
             if (updatedBankData != undefined) {
-              bank!.BankId = updatedBankData.BankId;
-              bank!.BankName = updatedBankData.BankName;
+              bank.BankId = updatedBankData.BankId;
+              bank.BankName = updatedBankData.BankName;
               this.refreshDataSource();
               editBankDialogRef.close();
             }
-            bank = { BankId: 0, BankName: '' };
+            bank = null;
           }
           updatedBankData = null;
         } else {
